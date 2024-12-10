@@ -1,0 +1,16 @@
+from pathlib import Path
+
+# ファイル名を変更するフォルダのパス
+directory_path = 'C:/Users/mukunoki/Desktop/hil_pymovement/data/psychopy_data_csv/raw/data'
+
+# Pathオブジェクトを使用してディレクトリを参照
+directory = Path(directory_path)
+
+# ディレクトリ内のすべてのファイルに対してループ処理
+for file in directory.iterdir():
+    if file.is_file():  # ディレクトリではなくファイルのみを対象とする
+        # 新しいファイル名を生成（現在のファイル名に.csvを追加）
+        new_file_path = file.with_suffix(file.suffix + '.csv')
+        # ファイル名を変更
+        file.rename(new_file_path)
+        print(f'Renamed "{file.name}" to "{new_file_path.name}"')
